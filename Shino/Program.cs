@@ -4,6 +4,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using Shino.Extra;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Shino
@@ -35,7 +36,8 @@ namespace Shino
             _discord.Log += Log;
             _discord.Ready += ClientReady;
 
-            await _discord.LoginAsync(TokenType.Bot, "NDg1Mzg3NTA0MDE1Mzc2Mzk0.Dm0oWw.a-pscbUMUgr8LyC1wUVtCyq7k8s");
+            var token = File.ReadAllText("token");
+            await _discord.LoginAsync(TokenType.Bot, token);
             await _discord.StartAsync();
 
             await Task.Delay(-1);
