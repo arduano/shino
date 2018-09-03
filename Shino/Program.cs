@@ -43,7 +43,6 @@ namespace Shino
             await Task.Delay(-1);
         }
 
-
         private async Task ClientReady()
         {
             await _discord.SetActivityAsync(new Activity("with innocence", ActivityType.Watching));

@@ -15,8 +15,8 @@ namespace Shino.Database.Models
         public int ServerId { get; set; }
         public virtual Server Server { get; set; }
 
-        public int LovePointsId { get; set; }
-        public virtual Points LovePoints { get; set; }
+        public int PointsId { get; set; }
+        public virtual Points Points { get; set; }
 
         public virtual ICollection<UserActions> UserActions { get; set; }
 

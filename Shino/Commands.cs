@@ -21,12 +21,18 @@ namespace Shino
             db = new ShinoDb();
         }
 
+        [Command("EmbedTest")]
+        public async Task EmbedTest()
+        {
+            var embed = new EmbedBuilder();
+        }
+
         [Command("lp")]
         public async Task CheckPoints()
         {
             CheckUser();
             var eb = new EmbedBuilder();
-            eb.WithDescription((Context.Guild.CurrentUser.Nickname ?? Context.User.Username) + " you have \t**" + us + "** points");
+            eb.WithDescription((Context.Guild.CurrentUser.Nickname ?? Context.User.Username) + " you have \t**" +  + "** points");
             await Context.Channel.SendMessageAsync("", false, eb.Build());
         }
 
