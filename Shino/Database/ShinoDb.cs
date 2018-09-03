@@ -25,7 +25,7 @@ namespace Shino.Database
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserServer>()
-                .HasOne(s => s.LovePoints)
+                .HasOne(s => s.Points)
                 .WithOne(l => l.UserServer)
                 .HasForeignKey<Points>(l => l.UserServerId);
         }

@@ -32,7 +32,7 @@ namespace Shino
         {
             CheckUser();
             var eb = new EmbedBuilder();
-            eb.WithDescription((Context.Guild.CurrentUser.Nickname ?? Context.User.Username) + " you have \t**" +  + "** points");
+            eb.WithDescription((Context.Guild.CurrentUser.Nickname ?? Context.User.Username) + " you have \t**" + us + "** points");
             await Context.Channel.SendMessageAsync("", false, eb.Build());
         }
 
@@ -97,12 +97,12 @@ namespace Shino
 
                 db.Points.Add(lp);
                 db.SaveChanges();
-                us.LovePoints = lp;
-                us.LovePointsId = lp.Id;
+                us.Points = lp;
+                us.PointsId = lp.Id;
             }
             else
             {
-                us = db.UserServers.Include(s => s.LovePoints).FirstOrDefault(us => us.UserId == user.Id && us.ServerId == server.Id);
+                us = db.UserServers.Include(s => s.Points).FirstOrDefault(us => us.UserId == user.Id && us.ServerId == server.Id);
             }
         }
     }
