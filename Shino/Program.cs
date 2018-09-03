@@ -76,6 +76,18 @@ namespace Shino
             {
                 Console.WriteLine("| Response: " + msg.Content);
             }
+            else
+            {
+                //Alternate response system thing
+
+                #region Check Phrases
+
+                #endregion
+
+                #region Check Language
+
+                #endregion
+            }
         }
     }
 }
