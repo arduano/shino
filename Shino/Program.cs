@@ -85,9 +85,34 @@ namespace Shino
                 #endregion
 
                 #region Check Language
-
+                //idk maybe something that detects heated arguments and reminds people to calm down or somethng
                 #endregion
             }
+        }
+
+        bool ContainsPhrase(string context, string phrase)
+        {
+            phrase = phrase.ToLower();
+            context = context.ToLower();
+            int p = 0;
+            for (int i = 0; i < context.Length; i++)
+            {
+                //check if the phrase can start
+                if (p < 2)
+                {
+                    if (i == 0 || !Char.IsLetter(context[i])) p = 1;
+                }
+
+                //check phrase letters if started
+                if (p > 0)
+                {
+                    if (context[i] == phrase[p - 1]) p++;
+                    else if (Char.IsLetter(context[i])) p = 0;
+
+                    if (p == phrase.Length) return true;
+                }
+            }
+            return false;
         }
     }
 }
