@@ -6,6 +6,8 @@ using Shino.Extra;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Shino
 {
@@ -16,7 +18,17 @@ namespace Shino
         private CommandService _commands;
         private IServiceProvider _services;
         private int argPos = 0;
+        private HttpClient httpClient = new HttpClient();
 
+        async Task<string> GetGifLink(/*insert command options here*/) //Move this method to commands class
+        {
+            var response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, "http://ianlaan.nl/lovebot/api?token=" + //Replace token with variable
+                "2y10lV0iIncR9Q82GFbEzMUwDX8mljO0SofHYRHjgArWr115RJEk0u&type=gif&value=" + //Make this flexible with command options
+                "angry"));
+            var content = await response.Content.ReadAsStringAsync();
+            var js = JsonConvert.DeserializeObject(content);
+            return ((dynamic)js).response;
+        }
 
         public async Task RunBotAsync()
         {
